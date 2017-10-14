@@ -10,6 +10,7 @@ module.exports = merge(common, {
   devServer: {
     port: env.devServer.port,
     hot: true,
+    host: '0.0.0.0',
     contentBase: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     historyApiFallback: true

@@ -9,6 +9,7 @@ export default [
     component: LayoutDefault,
     children: [
       { path: '', component: ViewIndex },
+      { path: ':r', component: ViewIndex },
       { path: '*', component: Error404 }
     ]
   }

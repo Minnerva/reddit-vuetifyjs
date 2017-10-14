@@ -26,7 +26,7 @@ module.exports = {
   },
   entry: {
     app: './src/index',
-    vendor: ['vue', 'vuetify', 'vuex', 'vue-router', 'vue-i18n', 'lodash', 'axios']
+    vendor: ['vue', 'vuetify', 'vuex', 'vue-router', 'vue-i18n', 'lodash', 'axios', 'babel-polyfill', 'moment']
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -36,7 +36,8 @@ module.exports = {
       SystemLangs: JSON.stringify(SystemLangs)
     }),
     new webpack.ProvidePlugin({
-      _: 'lodash'
+      _: 'lodash',
+      moment: 'moment'
     }),
     new CleanWebpackPlugin(['dist']),
     new ExtractTextPlugin('style.css'),
