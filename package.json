@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Minnerwa/reddit-vuetifyjs#readme",
   "dependencies": {
     "axios": "^0.16.2",
-    "devicon": "^2.0.0",
+    "devicon-2.2": "^2.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.19.1",
     "vue": "^2.4.4",
