@@ -29,11 +29,15 @@
     },
     methods: {
       initSubReddit () {
-        this.$store.dispatch({ 
-          type: 'getThreads',
-          subReddit: this.$route.params.r ? this.$route.params.r : 'all',
-          action: 'init'
+        this.$store.commit({
+          type: 'setSubReddit',
+          subReddit: this.$route.params.r ? this.$route.params.r : this.$store.state.defaultSubReddit
         })
+        this.$store.commit('setToolbarTitle')
+        this.$store.commit('setApiThread')
+        this.$store.commit('setDefaultColor')
+
+        this.$store.dispatch({ type: 'getThreads', action: 'init' })
       }
     }
   }
