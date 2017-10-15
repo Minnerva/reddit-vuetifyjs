@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin') // remove dist folder
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const SystemLangs = require('./src/systems/langs')
+const SystemLangs = require('./../src/systems/langs')
 
 module.exports = {
   resolve: {
@@ -12,20 +12,20 @@ module.exports = {
     descriptionFiles: ['package.json'],
     extensions: ['.js', '.vue'],
     alias: {
-      '~src': path.resolve(__dirname, './src'),
-      '~components': path.resolve(__dirname, './src/components'),
-      '~layouts': path.resolve(__dirname, './src/layouts'),
-      '~views': path.resolve(__dirname, './src/views'),
-      '~langs': path.resolve(__dirname, './src/langs'),
-      '~stores': path.resolve(__dirname, './src/stores'),
-      '~systems': path.resolve(__dirname, './src/systems'),
-      '~utils': path.resolve(__dirname, './src/utils'),
+      '~src': path.resolve(__dirname, './../src'),
+      '~components': path.resolve(__dirname, './../src/components'),
+      '~layouts': path.resolve(__dirname, './../src/layouts'),
+      '~views': path.resolve(__dirname, './../src/views'),
+      '~langs': path.resolve(__dirname, './../src/langs'),
+      '~stores': path.resolve(__dirname, './../src/stores'),
+      '~systems': path.resolve(__dirname, './../src/systems'),
+      '~utils': path.resolve(__dirname, './../src/utils'),
 
       'vue': 'vue/dist/vue.esm.js'
     }
   },
   entry: {
-    app: './src/index',
+    app: path.resolve(__dirname, './../src/index'),
     vendor: ['vue', 'vuetify', 'vuex', 'vue-router', 'vue-i18n', 'lodash', 'axios', 'babel-polyfill', 'moment']
   },
   plugins: [
@@ -39,7 +39,9 @@ module.exports = {
       _: 'lodash',
       moment: 'moment'
     }),
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve(__dirname, './../')
+    }),
     new ExtractTextPlugin('style.css'),
     new CopyWebpackPlugin([
       {
@@ -49,7 +51,7 @@ module.exports = {
     ])
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './../dist'),
     publicPath: '/'
   },
   module: {

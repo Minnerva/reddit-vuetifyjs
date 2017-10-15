@@ -4,10 +4,10 @@
   "description": "Testing Reddit's API with Vuetify component",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --hot --inline -d --env=dev",
-    "script": "webpack --env=dev",
-    "watch": "webpack --progress --watch --env=dev",
-    "dist": "webpack --env=prod",
+    "start": "webpack-dev-server --open --hot --inline -d --config webpack/webpack.config.js --env=dev",
+    "script": "webpack --config webpack/webpack.config.js --env=dev",
+    "watch": "webpack --progress --watch --config webpack/webpack.config.js --env=dev",
+    "dist": "webpack --config webpack/webpack.config.js --env=prod",
     "test": "karma start karma.conf.js",
     "deploy": "npm run dist && node ./deploy"
   },
