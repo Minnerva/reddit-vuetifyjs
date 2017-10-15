@@ -22,4 +22,4 @@ const messages = getSystemLangs()
 const i18n = new VueI18n({ locale: 'en', messages })
 
 const app = new Vue({ store, router, i18n })
-app.$mount('#app')
+app.$mount('#ajkLmeno')
