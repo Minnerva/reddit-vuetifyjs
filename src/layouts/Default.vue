@@ -1,11 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      persistent
-      v-model="drawer"
-      enable-resize-watcher
-      app
-    >
+    <v-navigation-drawer app enable-resize-watcher persistent v-model="drawer">
       <list-navigation-drawer />
     </v-navigation-drawer>
     <v-toolbar :class="primaryLayoutClass" dark fixed app>
@@ -22,19 +17,26 @@
     <v-footer :class="primaryLayoutClass" app>
       <span class="white--text">&copy; 2017</span>
     </v-footer>
+
+    <!-- <dialog-loading /> -->
+
   </v-app>
+  
 </template>
 
 <script>
   import ListNavigationDrawer from '~components/list/NavigationDrawer'
+  import DialogLoading from '~components/dialog/Loading'
 
   export default {
     components: {
-      ListNavigationDrawer
+      ListNavigationDrawer,
+      DialogLoading
     },
     data: function () {
       return {
-        drawer: true
+        drawer: true,
+        dialog: true
       }
     },
     computed: {

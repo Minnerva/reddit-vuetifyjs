@@ -1,6 +1,9 @@
 let drawerMenu = ''
 
 export default {
+  setMainContentLoading (state, { isLoading }) {
+    state.isMainContentLoading = isLoading
+  },
   setSubReddit (state, { subReddit }) {
     state.subReddit = subReddit
   },
@@ -9,12 +12,12 @@ export default {
   },
   setDefaultColor (state) {
     drawerMenu = _.find(state.drawerMenus, o => {
-      return o.path === state.subReddit
+      return o.r === state.subReddit
     })
     state.layoutPrimaryColor = drawerMenu ? drawerMenu.primaryColor : state.defaultLayoutPrimaryColor
   },
-  setApiThread (state) {
-    state.apiThread = `https://www.reddit.com/r/${state.subReddit}/hot.json`
+  emptyThreads (state) {
+    state.threads = []
   },
   initSubReddit (state, { threads }) {
     state.threads = threads.data.data.children.map(({ data }) => {
@@ -23,5 +26,17 @@ export default {
   },
   addNewThreads (state, payload) {
     console.log('new')
+  },
+  setThreadContent (state, { thread }) {
+    state.threadContent = thread.data[0].data.children[0].data
+  },
+  setComments (state, { comments }) {
+    state.comments = comments.data[1].data.children
+  },
+  emptyThreadContent (state) {
+    state.threadContent = { title: '' }
+  },
+  emptyComments (state) {
+    state.comments = []
   }
 }

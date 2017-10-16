@@ -11,31 +11,33 @@ export default {
     defaultLayoutPrimaryColor: DEFAULT_LAYOUT_PRIMARY_COLOR,
     defaultSubReddit: DEFAULT_SUB_REDDIT,
 
+    isMainContentLoading: false,
     toolbarTitle: 'Loading...',
     layoutPrimaryColor: DEFAULT_LAYOUT_PRIMARY_COLOR,
     drawerMenus: [
       {
         title: 'WebDev',
-        path: '/',
+        r: 'webdev',
         icon: 'home',
         primaryColor: DEFAULT_LAYOUT_PRIMARY_COLOR
       },
       {
         title: 'VueJS',
-        path: 'vuejs',
+        r: 'vuejs',
         icon: 'devicon-vuejs-plain',
         primaryColor: 'green darken-3'
       },
       {
         title: 'ReactJS',
-        path: 'reactjs',
+        r: 'reactjs',
         icon: 'devicon-react-original',
         primaryColor: 'light-blue lighten-1'
       }
     ],
     subReddit: DEFAULT_SUB_REDDIT, // Also, a default for index,
-    apiThread: '',
-    threads: []
+    threads: [],
+    threadContent: {},
+    comments: []
   },
   getters,
   mutations,

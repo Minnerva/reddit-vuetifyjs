@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="mb-3 mt-3" :color="thread.stickied ? 'blue-grey darken-2': ''"> <!-- v-card color not working -->
     <v-container fluid >
       <v-layout row >
         <v-flex xs2 class="text-xs-center">
