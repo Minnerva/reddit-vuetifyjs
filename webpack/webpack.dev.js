@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const common = require('./webpack.common')
 const env = require('./../.env')
 
+const publicPath = 'http://localhost:' + env.devServer.port + '/'
+
 module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
@@ -15,7 +17,8 @@ module.exports = merge(common, {
     historyApiFallback: true
   },
   output: {
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: publicPath
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -23,7 +26,7 @@ module.exports = merge(common, {
       filename: 'index.html',
       env: {
         dev: true,
-        base: 'http://localhost:' + env.devServer.port + '/'
+        base: publicPath
       }
     }),
   ]

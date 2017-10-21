@@ -9,7 +9,8 @@ const env = require('./../.env')
 
 module.exports = merge(common, {
   output: {
-    filename: '[name].[hash].js'
+    filename: '[name].[hash].js',
+    publicPath: env.deployUrl
   },
   plugins: [
     new HtmlWebpackPlugin({
