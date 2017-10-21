@@ -29,8 +29,9 @@
     },
     methods: {
       initSubReddit () {
-        this.$store.dispatch({ type: 'setLayoutStateFromParams', r: this.$route.params.r })
-        this.$store.dispatch({ type: 'getThreads', action: 'init' })
+        this.$store.dispatch({ type: 'setLayoutStateFromParams', r: this.$route.params.r }).then(() => {
+          this.$store.dispatch({ type: 'getThreads', action: 'init' })
+        })
       }
     }
   }
