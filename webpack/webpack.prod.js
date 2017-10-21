@@ -21,13 +21,14 @@ module.exports = merge(common, {
       },
       env: {
         prod: true,
+        base: env.deployUrl,
         key: {
           analytics: env.googleAnalytic.key
         }
       }
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false }
-    // })
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    })
   ]
 })

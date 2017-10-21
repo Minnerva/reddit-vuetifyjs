@@ -22,7 +22,8 @@ module.exports = merge(common, {
       template: './src/index.hbs',
       filename: 'index.html',
       env: {
-        dev: true
+        dev: true,
+        base: 'http://localhost:' + env.devServer.port + '/'
       }
     }),
   ]
