@@ -1,8 +1,9 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
+      <!-- <div v-if="threads.length <= 0">There seems to be no sub-reddit you're looking for</div>       -->
       <card-thread v-for="thread in threads" :key="thread.id" :thread="thread" />
-      <!-- <div v-if="threads.length <= 0">There seems to be no sub-reddit you're looking for</div> -->
+      <v-btn :loading="isLoadingMore" v-show="isShowLoadMore" @click="loadMore" block color="secondary" dark>Load More</v-btn>
     </v-flex>
   </v-layout>
 </template>
@@ -25,13 +26,23 @@
     computed: {
       threads: function () {
         return this.$store.state.threads
+      },
+      isShowLoadMore: function () {
+        return this.$store.state.isShowLoadMore
+      },
+      isLoadingMore: function () {
+        return this.$store.state.isLoadingMore
       }
     },
     methods: {
       initSubReddit () {
-        this.$store.dispatch({ type: 'setLayoutStateFromParams', r: this.$route.params.r }).then(() => {
-          this.$store.dispatch({ type: 'getThreads', action: 'init' })
+        this.$store.dispatch({ type: 'setLayoutStateFromParams', r: this.$route.params.r })
+        this.$store.dispatch({ type: 'getThreads', action: 'init' }).then(() => {
+          this.$store.commit({ type: 'setIsShowLoadMore', isShowLoadMore: true })
         })
+      },
+      loadMore () {
+        this.$store.dispatch({ type: 'getMoreThreads' })
       }
     }
   }

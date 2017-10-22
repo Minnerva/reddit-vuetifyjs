@@ -24,8 +24,11 @@ export default {
       return data
     })
   },
-  addNewThreads (state, payload) {
-    console.log('new')
+  addNewThreads (state, { threads }) {
+    let formatThreads = threads.data.data.children.map(({ data }) => {
+      return data
+    })
+    state.threads.push(...formatThreads)
   },
   setThreadContent (state, { thread }) {
     state.threadContent = thread.data[0].data.children[0].data
@@ -38,5 +41,14 @@ export default {
   },
   emptyComments (state) {
     state.comments = []
+  },
+  setIsShowLoadMore (state, { isShowLoadMore }) {
+    state.isShowLoadMore = isShowLoadMore
+  },
+  setIsLoadingMore (state, { isLoadingMore }) {
+    state.isLoadingMore = isLoadingMore
+  },
+  setThreadAfter (state, { threadAfter }) {
+    state.threadAfter = threadAfter
   }
 }

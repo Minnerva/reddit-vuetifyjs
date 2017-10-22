@@ -19,12 +19,26 @@ export default {
       switch (action) {
         case 'init':
           commit({ type: 'initSubReddit', threads: xjs })
+          commit({ type: 'setThreadAfter', threadAfter: xjs.data.data.after })
           break
       }
     } else {
       console.error(xjs)
     }
     // commit({ type: 'setMainContentLoading', isLoading: false })
+  },
+  async getMoreThreads ({ state, commit }) {
+    commit({ type: 'setIsLoadingMore', isLoadingMore: true })
+    xjs = await axios.get(`https://www.reddit.com/r/${state.subReddit}/hot.json`, {
+      params: {
+        after: state.threadAfter
+      }
+    })
+    if (xjs.status === 200) {
+      commit({ type: 'addNewThreads', threads: xjs })
+      commit({ type: 'setThreadAfter', threadAfter: xjs.data.data.after })
+    }
+    commit({ type: 'setIsLoadingMore', isLoadingMore: false })
   },
   async getComments ({ state, commit }, { id }) {
     commit('emptyThreadContent')

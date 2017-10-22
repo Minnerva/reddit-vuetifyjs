@@ -13,6 +13,8 @@ export default {
 
     isMainContentLoading: false,
     toolbarTitle: 'Loading...',
+    isShowLoadMore: false,
+    isLoadingMore: false,
     layoutPrimaryColor: DEFAULT_LAYOUT_PRIMARY_COLOR,
     drawerMenus: [
       {
@@ -73,7 +75,8 @@ export default {
     subReddit: DEFAULT_SUB_REDDIT, // Also, a default for index,
     threads: [],
     threadContent: {},
-    comments: []
+    comments: [],
+    threadAfter: ''
   },
   getters,
   mutations,
