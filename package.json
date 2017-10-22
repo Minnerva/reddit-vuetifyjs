@@ -1,6 +1,6 @@
 {
   "name": "reddit-vuetifyjs",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Testing Reddit's API with Vuetify component",
   "main": "index.js",
   "scripts": {
