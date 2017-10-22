@@ -5,6 +5,7 @@
           <v-flex>
             <div>
               <div class="headline cursor-pointer" @click="toExternalURL(thread.url)">{{ thread.title }}</div>
+              <div>({{ thread.domain }})</div>
               <v-divider class="mb-3 mt-2" />
 
               <template v-if="thread.domain === 'youtube.com'">
