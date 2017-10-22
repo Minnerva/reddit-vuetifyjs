@@ -4,7 +4,14 @@
     <v-toolbar flat>
       <v-list>
         <v-list-tile>
-          <v-list-tile-title class="title">Sub Reddit</v-list-tile-title>
+          <v-flex>
+            <v-list-tile-title class="title">Sub Reddit</v-list-tile-title>
+          </v-flex>
+          <v-flex>
+            <v-list-tile-title class="title text-xs-right">
+              <v-icon class="cursor-pointer" @click="openGitHub()" color="grey darken-4">devicon-github-plain</v-icon>
+            </v-list-tile-title>
+          </v-flex>
         </v-list-tile>
       </v-list>
     </v-toolbar>
@@ -28,7 +35,7 @@
           </v-list-tile-content>
         </v-list-tile>
       </template>
-        
+      
     </v-list>
     <v-divider></v-divider>
     <v-subheader>Languages</v-subheader>
@@ -53,6 +60,9 @@
       },
       routePath (r) {
         return r === this.$store.state.defaultSubReddit ? '/' : '/' + r
+      },
+      openGitHub () {
+        window.open('https://github.com/Minnerwa/reddit-vuetifyjs')
       }
     }
   }
