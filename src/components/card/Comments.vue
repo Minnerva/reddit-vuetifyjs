@@ -11,7 +11,7 @@
                 </div>
                 <div v-else>
                   <div>
-                    <a href="#" @click.prevent="loadMoreReplies(child)">
+                    <a href="#" @click.prevent="openMoreReply(child)">
                       <i>{{ child.data.count }} more {{ getLangReply(child) }}...</i>
                     </a>
                   </div>
@@ -60,8 +60,11 @@
       getLangReply (child) {
         return child.data.count <= 1 ? 'reply' : 'replies'
       },
-      loadMoreReplies (child) {
-        // window.open('https://reddit.com' + this.thread.permalink + child.data.id)
+      getParentId (child) {
+        return child.data.parent_id.replace(/(t[0-9]*_)/g, '')
+      },
+      openMoreReply (child) {
+        window.open('https://reddit.com' + this.thread.permalink + this.getParentId(child))
       }
     }
   }
