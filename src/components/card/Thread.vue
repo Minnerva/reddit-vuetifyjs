@@ -14,8 +14,7 @@
         <v-flex xs10>
           <div>
             <div class="headline cursor-pointer" @click="toDetail">{{ thread.title }}</div>
-            <div>Submitted {{ createSince }}</div>
-            <div>by {{ thread.author }}</div>
+            <div>{{ $t('general.submitted') }} {{ createSince }} {{ $t('general.by') }} {{ thread.author }} ({{ thread.domain }})</div>
           </div>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -48,7 +47,26 @@
     },
     computed: {
       createSince: function () {
-        return this.thread.created_utc > 0 ? moment(this.thread.created_utc + '000', 'x').fromNow() : 'N/A'
+        let localeText = ''
+        let singular = false
+        let momentText = moment(this.thread.created_utc + '000', 'x').fromNow()
+        let splitText = momentText.split(' ')
+        if (['a', 'an'].indexOf(splitText[0]) > -1) {
+          singular = true
+        }
+        if (singular) {
+          if (this.$i18n.locale === 'th') {
+            localeText += 'หนึ่ง'
+          }
+          localeText += this.$t('time.' + _.camelCase(splitText[0] + ' ' + splitText[1]))
+        } else {
+          localeText += splitText[0] + ' ' + this.$t('time.' + splitText[1])
+        }
+        if (this.$i18n.locale === 'en') {
+          localeText += ' '
+        }
+        localeText += this.$t('time.ago')
+        return localeText
       },
       upvoteColor: function () {
         return this.thread.score > 0 ? 'green' : ''
@@ -57,7 +75,7 @@
         return this.thread.score < 0 ? 'red' : ''
       },
       textComments: function () {
-        return this.thread.num_comments > 1 ? 'comments' : 'comment'
+        return this.thread.num_comments > 1 ? this.$t('general.comments') : this.$t('general.comment')
       }
     },
     methods: {

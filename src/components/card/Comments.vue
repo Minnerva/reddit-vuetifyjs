@@ -12,7 +12,7 @@
                 <div v-else>
                   <div>
                     <a href="#" @click.prevent="openMoreReply(child)">
-                      <i>{{ child.data.count }} more {{ getLangReply(child) }}...</i>
+                      <i>{{ child.data.count }} {{ getLangReply(child) }}...</i>
                     </a>
                   </div>
                 </div>
@@ -58,7 +58,7 @@
         return  _.isObject(child.data.replies) ? child.data.replies.data.children : []
       },
       getLangReply (child) {
-        return child.data.count <= 1 ? 'reply' : 'replies'
+        return child.data.count <= 1 ? this.$t('general.moreReply') : this.$t('general.moreReplies')
       },
       getParentId (child) {
         return child.data.parent_id.replace(/(t[0-9]*_)/g, '')

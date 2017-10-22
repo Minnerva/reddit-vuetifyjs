@@ -3,7 +3,9 @@
     <v-flex xs12>
       <!-- <div v-if="threads.length <= 0">There seems to be no sub-reddit you're looking for</div>       -->
       <card-thread v-for="thread in threads" :key="thread.id" :thread="thread" />
-      <v-btn :loading="isLoadingMore" v-show="isShowLoadMore" @click="loadMore" block color="secondary" dark>Load More</v-btn>
+      <v-btn :loading="isLoadingMore" v-show="isShowLoadMore" @click="loadMore" block color="secondary" dark>
+        {{ $t('general.loadMore') }}
+      </v-btn>
     </v-flex>
   </v-layout>
 </template>

@@ -1,6 +1,9 @@
 let drawerMenu = ''
 
 export default {
+  setDrawerOpen (state, { isOpen }) {
+    state.drawerOpen = isOpen
+  },
   setMainContentLoading (state, { isLoading }) {
     state.isMainContentLoading = isLoading
   },

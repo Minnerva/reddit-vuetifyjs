@@ -11,6 +11,7 @@ export default {
     defaultLayoutPrimaryColor: DEFAULT_LAYOUT_PRIMARY_COLOR,
     defaultSubReddit: DEFAULT_SUB_REDDIT,
 
+    drawerOpen: false,
     isMainContentLoading: false,
     toolbarTitle: 'Loading...',
     isShowLoadMore: false,

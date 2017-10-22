@@ -38,21 +38,21 @@
       
     </v-list>
     <v-divider></v-divider>
-    <v-subheader>Languages</v-subheader>
+    <v-subheader>{{ $t('general.language') }}</v-subheader>
     <v-layout justify-center row wrap>
-      <v-btn light  disabled :color="layoutPrimaryColor">EN</v-btn>
-      <v-btn light  disabled :color="layoutPrimaryColor">TH</v-btn>
+      <button-language lang="en" />
+      <button-language lang="th" />
     </v-layout>
 
   </div>
 </template>
 
 <script>
+  import ButtonLanguage from '~components/button/Language'
+
   export default {
-    computed: {
-      layoutPrimaryColor () {
-        return this.$store.state.layoutPrimaryColor
-      }
+    components: {
+      ButtonLanguage
     },
     methods: {
       isActive (r) {

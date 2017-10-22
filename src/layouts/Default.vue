@@ -1,10 +1,8 @@
 <template>
   <v-app>
-    <v-navigation-drawer app enable-resize-watcher persistent v-model="drawer">
-      <list-navigation-drawer />
-    </v-navigation-drawer>
+    <navigation-drawer />
     <v-toolbar :class="primaryLayoutClass" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="toggleDrawer()"></v-toolbar-side-icon>
       <v-toolbar-title>{{ toolbarTitle }}</v-toolbar-title>
     </v-toolbar>
     <main>
@@ -25,26 +23,33 @@
 </template>
 
 <script>
-  import ListNavigationDrawer from '~components/list/NavigationDrawer'
+  import NavigationDrawer from '~components/navigation/Drawer'
   import DialogLoading from '~components/dialog/Loading'
 
   export default {
     components: {
-      ListNavigationDrawer,
+      NavigationDrawer,
       DialogLoading
     },
     data: function () {
       return {
-        drawer: true,
         dialog: true
       }
     },
     computed: {
-      toolbarTitle: function () {
+      drawer () {
+        return this.$store.state.drawerOpen
+      },
+      toolbarTitle () {
         return this.$store.getters.toolbarTitle
       },
-      primaryLayoutClass: function () {
+      primaryLayoutClass () {
         return this.$store.state.layoutPrimaryColor
+      }
+    },
+    methods: {
+      toggleDrawer () {
+        this.$store.commit('setDrawerOpen', { isOpen: !this.drawer })
       }
     },
     props: {
