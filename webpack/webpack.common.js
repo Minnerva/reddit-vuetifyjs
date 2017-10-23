@@ -6,6 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const SystemLangs = require('./../src/systems/langs')
 
+const distDir = path.resolve(__dirname, './../dist')
+
 module.exports = {
   resolve: {
     modules: ['node_modules'],
@@ -51,7 +53,7 @@ module.exports = {
     ])
   ],
   output: {
-    path: path.resolve(__dirname, './../dist'),
+    path: distDir,
     publicPath: '/'
   },
   module: {

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const common = require('./webpack.common')
 const env = require('./../.env')
 
+const distDir = path.resolve(__dirname, './../dist')
 const publicPath = 'http://localhost:' + env.devServer.port + '/'
 
 module.exports = merge(common, {
@@ -12,7 +13,7 @@ module.exports = merge(common, {
   devServer: {
     port: env.devServer.port,
     hot: true,
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: distDir,
     publicPath: '/',
     historyApiFallback: true
   },
@@ -28,6 +29,6 @@ module.exports = merge(common, {
         dev: true,
         base: publicPath
       }
-    }),
+    })
   ]
 })

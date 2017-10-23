@@ -1,11 +1,14 @@
 process.env.NODE_ENV = '"production"'
 
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const common = require('./webpack.common')
 const env = require('./../.env')
+const distDir = path.resolve(__dirname, './../dist')
 
 module.exports = merge(common, {
   output: {
@@ -30,6 +33,11 @@ module.exports = merge(common, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
+    }),
+    new WorkboxPlugin({
+      globDirectory: distDir,
+      globPatterns: ['**/*.{html,js,css}'],
+      swDest: path.join(distDir, 'sw.js')
     })
   ]
 })
