@@ -8,3 +8,13 @@ workboxSW.router.registerRoute(
   'https://minnerwa.github.io/reddit-vuetifyjs/(.*)',
   workboxSW.strategies.networkFirst({networkTimeoutSeconds: 3})
 )
+
+importScripts('https://unpkg.com/workbox-routing@0.0.2/build/importScripts/workbox-routing.dev.v0.0.2.js');
+
+const router = new workboxSW.routing.Router()
+const crossOriginExpressRoute = new workboxSW.routing.ExpressRoute({
+  path: 'https://www.reddit.com/r/(.*)',
+  handler: ({ event }) => {
+    return fetch(event.request)
+  }
+})

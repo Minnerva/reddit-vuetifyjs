@@ -9,11 +9,11 @@
   "lang": "en-US",
   "icons": [
     {
-      "src": "/images/icon/icon-48x48.png",
+      "src": "images/icon/icon-48x48.png",
       "sizes": "48x48"
     },
     {
-      "src": "/images/icon/icon-72x72.png",
+      "src": "images/icon/icon-72x72.png",
       "sizes": "72x72"
     }
   ],
