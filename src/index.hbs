@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Reddit With Vuetify</title>
-  <link rel="shortcut icon" href="{{ htmlWebpackPlugin.options.env.base }}favicon.ico" /> 
+  <link rel="shortcut icon" href="{{ htmlWebpackPlugin.options.env.base }}favicon.ico" />
+  <link rel="manifest" href="{{ htmlWebpackPlugin.options.env.base }}manifest.json">  
   <meta name="description" content="Vuetify with Reddit API">
   <base href="{{ htmlWebpackPlugin.options.env.base }}">
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-
   {{#if htmlWebpackPlugin.options.env.prod }}
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ htmlWebpackPlugin.options.env.key.analytics }}"></script>
