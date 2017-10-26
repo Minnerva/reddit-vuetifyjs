@@ -18,3 +18,10 @@ const crossOriginExpressRoute = new workbox.routing.ExpressRoute({
     return fetch(event.request)
   }
 })
+
+router.registerRoutes({
+  routes: [crossOriginExpressRoute],
+})
+
+self.addEventListener('install', () => self.skipWaiting())
+self.addEventListener('activate', () => self.clients.claim())
