@@ -67,6 +67,13 @@ const crossOriginGooleMaterialIcon = new workbox.routing.ExpressRoute({
   }
 })
 
+const crossOriginGooleMaterialIconGStatis = new workbox.routing.ExpressRoute({
+  path: 'https://fonts.gstatic.com/(.*)',
+  handler: ({ event }) => {
+    return fetch(event.request)
+  }
+})
+
 const crossOriginGoogleAnalytic = new workbox.routing.ExpressRoute({
   path: 'https://www.googletagmanager.com/gtag/(.*)',
   handler: ({ event }) => {
@@ -75,7 +82,7 @@ const crossOriginGoogleAnalytic = new workbox.routing.ExpressRoute({
 })
 
 router.registerRoutes({
-  routes: [crossOriginRedditAPI, crossOriginGooleMaterialIcon, crossOriginGoogleAnalytic]
+  routes: [crossOriginRedditAPI, crossOriginGooleMaterialIcon, crossOriginGooleMaterialIconGStatis, crossOriginGoogleAnalytic]
 })
 
 self.addEventListener('install', () => self.skipWaiting())
