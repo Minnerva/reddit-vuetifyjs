@@ -12,7 +12,7 @@ const distDir = path.resolve(__dirname, './../dist')
 
 module.exports = merge(common, {
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].[chunkhash].js',
     publicPath: env.deployUrl
   },
   plugins: [

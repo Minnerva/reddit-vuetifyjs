@@ -41,6 +41,9 @@ module.exports = {
       _: 'lodash',
       moment: 'moment'
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
     new CleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname, './../')
     }),
