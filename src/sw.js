@@ -13,23 +13,39 @@ workboxSW.router.registerNavigationRoute('index.html', {
   whitelist: [/./]
 })
 
-workboxSW.router.registerRoute(
-  /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
-  workboxSW.strategies.networkFirst()
-)
-
 importScripts('https://unpkg.com/workbox-routing@0.0.2/build/importScripts/workbox-routing.dev.v0.0.2.js');
 
 const router = new workbox.routing.Router()
-const crossOriginExpressRoute = new workbox.routing.ExpressRoute({
+const crossOriginRedditAPI = new workbox.routing.ExpressRoute({
   path: 'https://www.reddit.com/r/(.*)',
   handler: ({ event }) => {
     return fetch(event.request)
   }
 })
 
+const crossOriginGooleMaterialIcon = new workbox.routing.ExpressRoute({
+  path: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons',
+  handler: ({ event }) => {
+    return fetch(event.request)
+  }
+})
+
+const crossOriginGooleMaterialIconGStatis = new workbox.routing.ExpressRoute({
+  path: 'https://fonts.gstatic.com/(.*)',
+  handler: ({ event }) => {
+    return fetch(event.request)
+  }
+})
+
+const crossOriginGoogleAnalytic = new workbox.routing.ExpressRoute({
+  path: 'https://www.googletagmanager.com/gtag/(.*)',
+  handler: ({ event }) => {
+    return fetch(event.request)
+  }
+})
+
 router.registerRoutes({
-  routes: [crossOriginExpressRoute],
+  routes: [crossOriginRedditAPI, crossOriginGooleMaterialIcon, crossOriginGooleMaterialIconGStatis, crossOriginGoogleAnalytic]
 })
 
 self.addEventListener('install', () => self.skipWaiting())
