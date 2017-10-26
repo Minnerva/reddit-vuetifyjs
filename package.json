@@ -9,7 +9,7 @@
     "watch": "webpack --progress --watch --config webpack/webpack.config.js --env=dev",
     "dist": "webpack --config webpack/webpack.config.js --env=prod",
     "test": "karma start karma.conf.js",
-    "deploy": "npm run dist && node ./deploy"
+    "deploy": "npm run dist && deploy.sh"
   },
   "repository": {
     "type": "git",
