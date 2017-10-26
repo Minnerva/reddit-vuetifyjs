@@ -47,7 +47,7 @@ module.exports = merge(common, {
     ]),
     new WorkboxPlugin({
       globDirectory: distDir,
-      globPatterns: ['**/*.{html,js,css}'],
+      globPatterns: ['**/*.{html,js,css,woff,ttf,svg,eot}'],
       swSrc: path.resolve(__dirname, './../src/sw.js'),
       swDest: path.join(distDir, 'sw.js')
     })

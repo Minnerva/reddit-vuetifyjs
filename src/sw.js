@@ -9,14 +9,14 @@ workboxSW.router.registerRoute(
   workboxSW.strategies.networkFirst({networkTimeoutSeconds: 3})
 )
 
-// workboxSW.router.registerNavigationRoute('index.html', {
-//   whitelist: [/./]
-// })
+workboxSW.router.registerNavigationRoute('index.html', {
+  whitelist: [/./]
+})
 
-// workboxSW.router.registerRoute(
-//   /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
-//   workboxSW.strategies.networkFirst()
-// )
+workboxSW.router.registerRoute(
+  /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
+  workboxSW.strategies.networkFirst()
+)
 
 importScripts('https://unpkg.com/workbox-routing@0.0.2/build/importScripts/workbox-routing.dev.v0.0.2.js');
 
