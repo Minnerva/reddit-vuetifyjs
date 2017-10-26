@@ -4,6 +4,7 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const common = require('./webpack.common')
@@ -33,6 +34,12 @@ module.exports = merge(common, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
+    }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
     }),
     new WorkboxPlugin({
       globDirectory: distDir,
