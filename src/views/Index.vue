@@ -38,10 +38,13 @@
     },
     methods: {
       initSubReddit () {
-        this.$store.dispatch({ type: 'setLayoutStateFromParams', r: this.$route.params.r })
-        this.$store.dispatch({ type: 'getThreads', action: 'init' }).then(() => {
-          this.$store.commit({ type: 'setIsShowLoadMore', isShowLoadMore: true })
-        })
+        let paramSubReddit = this.$route.params.r || this.$store.state.defaultSubReddit
+        if (paramSubReddit !== this.$store.state.subReddit) {
+          this.$store.dispatch({ type: 'setLayoutStateFromParams', r: paramSubReddit })
+          this.$store.dispatch({ type: 'getThreads', action: 'init' }).then(() => {
+            this.$store.commit({ type: 'setIsShowLoadMore', isShowLoadMore: true })
+          })
+        }
       },
       loadMore () {
         this.$store.dispatch({ type: 'getMoreThreads' })
