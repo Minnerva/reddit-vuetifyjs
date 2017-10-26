@@ -3,6 +3,7 @@ export default {
   ago: 'ที่แล้ว',
   aSecond: 'วินาที',
   second: 'วินาที',
+  aFew: 'ไม่กี่วินาที',
   aMinute: 'นาที',
   minutes: 'นาที',
   anHour: 'ชั่วโมง',

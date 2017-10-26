@@ -3,6 +3,7 @@ export default {
   ago: 'ago',
   aSecond: 'a second',
   second: 'seconds',
+  aFew: 'a few',
   aMinute: 'a minute',
   minutes: 'minutes',
   anHour: 'an hour',
