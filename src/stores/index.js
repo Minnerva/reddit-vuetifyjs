@@ -73,7 +73,7 @@ export default {
         primaryColor: 'orange lighten-1'
       }
     ],
-    subReddit: DEFAULT_SUB_REDDIT, // Also, a default for index,
+    subReddit: '',
     threads: [],
     threadContent: {},
     comments: [],
