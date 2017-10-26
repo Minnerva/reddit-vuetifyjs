@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const common = require('./webpack.common')
@@ -41,9 +42,13 @@ module.exports = merge(common, {
       cssProcessorOptions: { discardComments: { removeAll: true } },
       canPrint: true
     }),
+    new CopyWebpackPlugin([
+      { from: require.resolve('workbox-sw'), to: 'workbox-sw.prod.js' }
+    ]),
     new WorkboxPlugin({
       globDirectory: distDir,
       globPatterns: ['**/*.{html,js,css}'],
+      swSrc: path.resolve(__dirname, './../src/sw.js'),
       swDest: path.join(distDir, 'sw.js')
     })
   ]
