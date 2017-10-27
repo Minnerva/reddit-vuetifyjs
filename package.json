@@ -9,6 +9,7 @@
     "watch": "webpack --progress --watch --config webpack/webpack.config.js --env=dev",
     "dist": "webpack --config webpack/webpack.config.js --env=prod",
     "test": "karma start karma.conf.js",
+    "serve": "npm run script && http-server ./dist",
     "deploy": "deploy.sh"
   },
   "repository": {
@@ -56,6 +57,7 @@
     "handlebars": "^4.0.10",
     "handlebars-loader": "^1.6.0",
     "html-webpack-plugin": "^2.30.1",
+    "http-server": "^0.10.0",
     "jasmine-core": "^2.8.0",
     "karma": "^1.7.1",
     "karma-jasmine": "^1.1.0",

@@ -24,13 +24,15 @@ const i18n = new VueI18n({ locale: 'en', messages })
 const app = new Vue({ store, router, i18n })
 app.$mount('#ajkLmeno')
 
-const baseUrl = document.querySelector('base').getAttribute('href')
+if (process.env.NODE_ENV === 'production') {
+  const baseUrl = document.querySelector('base').getAttribute('href')
 
-if (window.location.hostname !== 'localhost' && window.location.protocol !== 'https:') {
-  window.location.href = baseUrl
-}
+  if (window.location.protocol !== 'https:') {
+    window.location.href = baseUrl
+  }
 
-// register service worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register(baseUrl + 'sw.js')
+  // register service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register(baseUrl + 'sw.js')
+  }
 }
