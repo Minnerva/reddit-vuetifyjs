@@ -4,6 +4,9 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin')
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
@@ -18,9 +21,20 @@ module.exports = merge(common, {
     publicPath: env.deployUrl
   },
   plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    }),
+    new ExtractTextPlugin('style.[contenthash].css'),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
+    }), 
     new HtmlWebpackPlugin({
       template: './src/index.hbs',
       filename: 'index.html',
+      excludeAssets: [/style.*.css/],
       minify: {
         collapseInlineTagWhitespace: true,
         collapseWhitespace: true
@@ -33,14 +47,9 @@ module.exports = merge(common, {
         }
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorOptions: { discardComments: { removeAll: true } },
-      canPrint: true
+    new HtmlWebpackExcludeAssetsPlugin(),
+    new StyleExtHtmlWebpackPlugin({
+      position: 'body-bottom'
     }),
     new CopyWebpackPlugin([
       { from: require.resolve('workbox-sw'), to: 'workbox-sw.prod.js' }

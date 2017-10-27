@@ -47,7 +47,6 @@ module.exports = {
     new CleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname, './../')
     }),
-    new ExtractTextPlugin('style.css'),
     new CopyWebpackPlugin([
       {
         from: './src/public',

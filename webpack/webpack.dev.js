@@ -3,6 +3,9 @@ process.env.NODE_ENV = '"development"'
 const path = require('path')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin')
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin')
 
 const common = require('./webpack.common')
 const env = require('./../.env')
@@ -24,13 +27,19 @@ module.exports = merge(common, {
     publicPath: publicPath
   },
   plugins: [
+    new ExtractTextPlugin('style.css'),    
     new HtmlWebpackPlugin({
       template: './src/index.hbs',
       filename: 'index.html',
+      excludeAssets: [/style.css/],
       env: {
         dev: true,
         base: publicPath
       }
+    }),
+    new HtmlWebpackExcludeAssetsPlugin(),
+    new StyleExtHtmlWebpackPlugin({
+      position: 'body-bottom'
     })
   ]
 })
