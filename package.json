@@ -1,6 +1,6 @@
 {
   "name": "reddit-vuetifyjs",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Testing Reddit's API with Vuetify component",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "axios": "^0.16.2",
     "devicon-2.2": "^2.2.0",
     "lodash": "^4.17.4",
+    "material-design-icons": "^3.0.1",
     "moment": "^2.19.1",
     "vue": "^2.4.4",
     "vue-i18n": "^7.3.1",

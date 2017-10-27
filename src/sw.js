@@ -23,27 +23,6 @@ const crossOriginRedditAPI = new workbox.routing.ExpressRoute({
   }
 })
 
-const crossOriginGooleMaterialIcon = new workbox.routing.ExpressRoute({
-  path: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons',
-  handler: ({ event }) => {
-    return fetch(event.request)
-  }
-})
-
-const crossOriginGooleMaterialIconGStatis = new workbox.routing.ExpressRoute({
-  path: 'https://fonts.gstatic.com/(.*)',
-  handler: ({ event }) => {
-    return fetch(event.request)
-  }
-})
-
-const crossOriginGoogleAnalytic = new workbox.routing.ExpressRoute({
-  path: 'https://www.googletagmanager.com/gtag/(.*)',
-  handler: ({ event }) => {
-    return fetch(event.request)
-  }
-})
-
 router.registerRoutes({
   routes: [crossOriginRedditAPI, crossOriginGooleMaterialIcon, crossOriginGooleMaterialIconGStatis, crossOriginGoogleAnalytic]
 })
