@@ -1,9 +1,23 @@
-// import View404 from 'views/404'
+import { mount } from 'vue-test-utils'
 
-// console.log(View404)
+import Counter from '~components/test/Counter'
 
-describe('Unit Test with Jasmine is working', function() {
-  it('Should Work', function() {
-    expect(true).toBe(true)
+describe('Counter', () => {
+  const wrapper = mount(Counter)
+
+  it('renders the correct markup', () => {
+    expect(wrapper.html()).toContain('<span class="count">0</span>')
   })
+
+  it('has a button', () => {
+    expect(wrapper.contains('button')).toBe(true)
+  })
+
+  it('button click should increment the count', () => {
+    expect(wrapper.vm.count).toBe(0)
+    const button = wrapper.find('button')
+    button.trigger('click')
+    expect(wrapper.vm.count).toBe(1)
+  })
+
 })

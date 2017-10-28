@@ -21,6 +21,9 @@ module.exports = merge(common, {
     publicPath: env.deployUrl
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
     }),

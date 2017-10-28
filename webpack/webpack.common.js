@@ -38,11 +38,7 @@ module.exports = {
       SystemLangs: JSON.stringify(SystemLangs)
     }),
     new webpack.ProvidePlugin({
-      _: 'lodash',
-      moment: 'moment'
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      _: 'lodash'
     }),
     new CleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname, './../')
@@ -72,7 +68,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env']
+            presets: ['env'],
+            plugins: [
+              require('babel-plugin-transform-async-to-generator')
+            ]
           }
         }
       },

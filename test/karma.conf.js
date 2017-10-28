@@ -1,17 +1,20 @@
-// Karma configuration
-// Generated on Sat Oct 07 2017 16:45:20 GMT+0700 (SE Asia Standard Time)
+let webpackConfig = require('./../webpack/webpack.test')
 
 module.exports = (config) => {
   config.set({
     basePath: './',
     frameworks: ['jasmine'],
     browsers: ['PhantomJS'],
-    files: ['test/**/*.test.js'],
+    files: [
+      './../node_modules/babel-polyfill/dist/polyfill.js',
+      '**/*.test.js'
+    ],
     exclude: [],
     preprocessors: {
-      'test/**/*.test.js': ['webpack']
+      '**/*.test.js': ['webpack']
     },
-    webpack: {},
+    // webpack: {},
+    webpack: webpackConfig,
     webpackMiddleware: {
       stats: 'errors-only'
     },

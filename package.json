@@ -8,7 +8,7 @@
     "script": "webpack --config webpack/webpack.config.js --env=dev",
     "watch": "webpack --progress --watch --config webpack/webpack.config.js --env=dev",
     "dist": "webpack --config webpack/webpack.config.js --env=prod",
-    "test": "karma start karma.conf.js",
+    "test": "karma start test/karma.conf.js",
     "serve": "npm run script && http-server ./dist",
     "deploy": "deploy.sh"
   },
@@ -31,6 +31,7 @@
     "vue": "^2.4.4",
     "vue-i18n": "^7.3.1",
     "vue-router": "^2.7.0",
+    "vue-test-utils": "^1.0.0-beta.3",
     "vuetify": "^0.16.9",
     "vuex": "^2.4.1"
   },

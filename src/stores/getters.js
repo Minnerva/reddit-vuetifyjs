@@ -1,8 +1,9 @@
 export default {
-  toolbarTitle: state => {
+  toolbarTitle (state) {
     return `r/${state.toolbarTitle}`
   },
-  routeToComments: (state, getters) => id => {
-    return `${state.toolbarTitle}/${id}`
+  routeToComments (state) {
+    let f = (id) => `${state.toolbarTitle}/${id}`
+    return f
   }
 }

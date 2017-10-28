@@ -17,9 +17,7 @@ Vue.use(VueI18n)
 
 const store = new Vuex.Store(stores)
 const router = new VueRouter({ routes, mode: 'history' })
-
-const messages = getSystemLangs()
-const i18n = new VueI18n({ locale: 'en', messages })
+const i18n = new VueI18n({ locale: 'en', messages: getSystemLangs() })
 
 const app = new Vue({ store, router, i18n })
 app.$mount('#ajkLmeno')

@@ -27,6 +27,7 @@ $ yarn install && yarn start
 | Axios | - |
 | Moment | - |
 | Workbox | Easy service-worker |
+| Vue Test Utils | Unit Testing |
 
 #### CSS
 | Use | Remark |
