@@ -1,21 +1,13 @@
 <template>
   <v-card class="mb-3 mt-3" :color="thread.stickied ? 'deep-purple lighten-4': ''"> <!-- v-card color not working -->
+    <thread-image :data="thread" :on-image-click="toDetail" />
     <v-container fluid >
       <v-layout row>
         <v-flex xs2>    
-          <flex-up-vote-down-vote :score="thread.score" />
+          <up-vote-down-vote :score="thread.score" />
         </v-flex>
-        <v-flex xs10>
-          <div>
-            <div class="headline cursor-pointer" @click="toDetail">{{ thread.title }}</div>
-            <div>
-              {{ $t('general.submitted') }} 
-              <span-time-form-now :timestamp="thread.created_utc" /> 
-              {{ $t('general.by') }} 
-              {{ thread.author }} 
-              ({{ thread.domain }})
-            </div>
-          </div>
+        <v-flex xs10 class="has-left-border">
+          <thread-header :thread="thread" :on-title-click="toDetail" />
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="orange darken-2" dark @click="toDetail">
@@ -29,35 +21,36 @@
 </template>
 
 <script>
-  import FlexUpVoteDownVote from '~components/flex/UpVoteDownVote'
-  import SpanTimeFormNow from '~components/span/TimeFromNow'
+  import ThreadImage from '~components/card/ThreadImage'
+  import ThreadHeader from '~components/card/ThreadHeader'
+  import UpVoteDownVote from '~components/flex/UpVoteDownVote'
 
   export default {
     components: {
-      FlexUpVoteDownVote,
-      SpanTimeFormNow
+      ThreadImage,
+      ThreadHeader,
+      UpVoteDownVote
     },
     props: {
       thread: { 
         type: Object,
-        default: function () {
+        default () {
           return {
-            title: '',
+            id: '',
+            stickied: false,
             score: 0,
-            author: '',
-            created_utc: 0,
             num_comments: 0
           }
         }
       }
     },
     computed: {
-      textComments: function () {
+      textComments () {
         return this.thread.num_comments > 1 ? this.$t('general.comments') : this.$t('general.comment')
       }
     },
     methods: {
-      toDetail: function () {
+      toDetail () {
         this.$router.push(this.$store.getters.routeToComments(this.thread.id))
       }
     }

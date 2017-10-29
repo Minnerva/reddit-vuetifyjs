@@ -2,24 +2,34 @@
   <div>
     <div v-for="child in children" :key="child.data.id">
       <v-flex v-bind="cardOffSet">
-        <v-card  class="mb-2 mt-2" >
-          <v-container fluid >
-            <v-layout row >
-              <v-flex>
-                <div v-if="child.kind === 't1'">
+        <v-flex>
+          <v-card  class="mb-2 mt-2" >
+            <v-container fluid >
+              
+              <v-layout row v-if="child.kind === 't1'">
+                <v-flex xs2>
+                  <up-vote-down-vote :score="child.data.score" />
+                </v-flex>
+                <v-flex class="has-left-border">
                   <div v-html="unescapeHTML(child.data.body_html)"></div>
-                </div>
-                <div v-else>
+                  <v-divider class="mb-3 mt-2" />
                   <div>
-                    <a href="#" @click.prevent="openMoreReply(child)">
-                      <i>{{ child.data.count }} {{ getLangReply(child) }}...</i>
-                    </a>
+                    {{ $t('general.submitted') }}  
+                    <time-from-now :timestamp="child.data.created_utc" /> 
+                    {{ $t('general.by') }} {{ child.data.author }}
                   </div>
-                </div>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card>
+                </v-flex>
+              </v-layout>
+
+              <v-layout row v-else>
+                <a href="#" @click.prevent="openMoreReply(child)">
+                  <i>{{ child.data.count }} {{ getLangReply(child) }}...</i>
+                </a>
+              </v-layout>
+
+            </v-container>
+          </v-card>
+        </v-flex>
       </v-flex>
       <card-comments :children="getReplies(child)" />
     </div>
@@ -27,12 +37,16 @@
 </template>
 
 <script>
-  import CardComments from '~components/card/Comments'
+  import CardComments from '~components/card/Comments' // self-call
+  import UpVoteDownVote from '~components/flex/UpVoteDownVote'
+  import TimeFromNow from '~components/span/TimeFromNow'
 
   export default {
     name: 'card-comments',
     components: {
-      CardComments
+      CardComments,
+      UpVoteDownVote,
+      TimeFromNow
     },
     props: {
       children: { type: Array, default: [] }

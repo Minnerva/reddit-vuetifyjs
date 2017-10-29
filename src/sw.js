@@ -24,7 +24,7 @@ const crossOriginRedditAPI = new workbox.routing.ExpressRoute({
 })
 
 router.registerRoutes({
-  routes: [crossOriginRedditAPI, crossOriginGooleMaterialIcon, crossOriginGooleMaterialIconGStatis, crossOriginGoogleAnalytic]
+  routes: [crossOriginRedditAPI]
 })
 
 self.addEventListener('install', () => self.skipWaiting())

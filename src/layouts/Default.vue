@@ -31,7 +31,7 @@
       NavigationDrawer,
       DialogLoading
     },
-    data: function () {
+    data () {
       return {
         dialog: true
       }
@@ -61,5 +61,8 @@
 <style>
   .cursor-pointer {
     cursor: pointer;
+  }
+  .has-left-border {
+    border-left: 1px solid black
   }
 </style>

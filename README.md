@@ -1,5 +1,8 @@
 # Reddit with Vuetify
 
+## Disclaimer
+This project has no intention to be able to fully function as another Reddit application.
+
 ## Version 0.6.0
 
 - Update **README**
