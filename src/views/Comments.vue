@@ -30,8 +30,10 @@
     },
     methods: {
       initComments () {
-        this.$store.dispatch({ type: 'setLayoutStateFromParams', r: this.$route.params.r }).then(() => {
-          this.$store.dispatch({ type: 'getComments', id: this.$route.params.id })          
+        this.$store.commit({ type: 'setIsDoneRender', isDoneRender: false })
+        this.$store.dispatch({ type: 'setLayoutStateFromParams', r: this.$route.params.r })
+        this.$store.dispatch({ type: 'getComments', id: this.$route.params.id }).then(() => {
+          this.$store.commit({ type: 'setIsDoneRender', isDoneRender: true })               
         })
       }
     }

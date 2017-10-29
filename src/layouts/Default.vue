@@ -1,22 +1,21 @@
 <template>
   <v-app>
     <navigation-drawer />
-    <v-toolbar :class="primaryLayoutClass" dark fixed app>
+    <v-toolbar :color="primaryLayoutColor" dark fixed app>
       <v-toolbar-side-icon @click.stop="toggleDrawer()"></v-toolbar-side-icon>
       <v-toolbar-title>{{ toolbarTitle }}</v-toolbar-title>
     </v-toolbar>
     <main>
       <v-content>
-        <v-container fluid grid-list-lg>
-          <router-view></router-view>
+        <v-container fill-height fluid grid-list-lg>
+          <layout-progress v-show="!isDoneRender" />
+          <router-view v-show="isDoneRender"></router-view>
         </v-container>
       </v-content>
     </main>
-    <v-footer :class="primaryLayoutClass" app>
+    <v-footer :color="primaryLayoutColor" app>
       <span class="white--text">&copy; 2017</span>
     </v-footer>
-
-    <!-- <dialog-loading /> -->
 
   </v-app>
   
@@ -24,12 +23,12 @@
 
 <script>
   import NavigationDrawer from '~components/navigation/Drawer'
-  import DialogLoading from '~components/dialog/Loading'
+  import LayoutProgress from '~components/layout/Progress'
 
   export default {
     components: {
       NavigationDrawer,
-      DialogLoading
+      LayoutProgress
     },
     data () {
       return {
@@ -43,8 +42,11 @@
       toolbarTitle () {
         return this.$store.getters.toolbarTitle
       },
-      primaryLayoutClass () {
+      primaryLayoutColor () {
         return this.$store.state.layoutPrimaryColor
+      },
+      isDoneRender () {
+        return this.$store.state.isDoneRender
       }
     },
     methods: {

@@ -12,8 +12,8 @@ export default {
     defaultSubReddit: DEFAULT_SUB_REDDIT,
 
     drawerOpen: false,
-    isMainContentLoading: false,
-    toolbarTitle: 'Loading...',
+    isDoneRender: false,
+    toolbarTitle: '',
     isShowLoadMore: false,
     isLoadingMore: false,
     layoutPrimaryColor: DEFAULT_LAYOUT_PRIMARY_COLOR,

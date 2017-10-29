@@ -40,9 +40,11 @@
       initSubReddit () {
         let paramSubReddit = this.$route.params.r || this.$store.state.defaultSubReddit
         if (paramSubReddit !== this.$store.state.subReddit) {
+          this.$store.commit({ type: 'setIsDoneRender', isDoneRender: false })       
           this.$store.dispatch({ type: 'setLayoutStateFromParams', r: paramSubReddit })
           this.$store.dispatch({ type: 'getThreads', action: 'init' }).then(() => {
             this.$store.commit({ type: 'setIsShowLoadMore', isShowLoadMore: true })
+            this.$store.commit({ type: 'setIsDoneRender', isDoneRender: true })
           })
         }
       },
