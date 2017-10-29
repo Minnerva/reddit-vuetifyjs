@@ -10,7 +10,7 @@
                 <v-flex xs2>
                   <up-vote-down-vote :score="child.data.score" />
                 </v-flex>
-                <v-flex class="has-left-border">
+                <v-flex xs10 class="has-left-border">
                   <div v-html="unescapeHTML(child.data.body_html)"></div>
                   <v-divider class="mb-3 mt-2" />
                   <div>

@@ -3,10 +3,10 @@
     <thread-image :data="thread" :on-image-click="toExternalURL" />
     <v-container fluid >
       <v-layout row >
-        <v-flex xs1>    
+        <v-flex xs2>    
           <up-vote-down-vote :score="thread.score" />
         </v-flex>
-        <v-flex>
+        <v-flex xs10>
           <div>
             <thread-header :thread="thread" :on-title-click="toExternalURL" />
 
