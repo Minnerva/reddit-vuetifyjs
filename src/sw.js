@@ -13,7 +13,7 @@ workboxSW.router.registerNavigationRoute('index.html', {
   whitelist: [/./]
 })
 
-importScripts('https://unpkg.com/workbox-routing@0.0.2/build/importScripts/workbox-routing.dev.v0.0.2.js');
+importScripts('https://unpkg.com/workbox-routing@0.0.2/build/importScripts/workbox-routing.dev.v0.0.2.js')
 
 const router = new workbox.routing.Router()
 const crossOriginRedditAPI = new workbox.routing.ExpressRoute({
