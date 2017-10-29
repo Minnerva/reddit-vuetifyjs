@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <card-thread-content />
-    <v-divider class="mb-3 mt-2" />
-    <card-comments :children="this.comments" />
-  </div>
+  <v-layout row wrap>
+    <v-flex xs12>
+      <card-thread-content />
+      <v-divider class="mb-3 mt-2" />
+      <card-comments :children="this.comments" />
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
