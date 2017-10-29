@@ -2,34 +2,32 @@
   <div>
     <div v-for="child in children" :key="child.data.id">
       <v-flex v-bind="cardOffSet">
-        <v-flex>
-          <v-card  class="mb-2 mt-2" >
-            <v-container fluid >
-              
-              <v-layout row v-if="child.kind === 't1'">
-                <v-flex xs2>
-                  <up-vote-down-vote :score="child.data.score" />
-                </v-flex>
-                <v-flex xs10 class="has-left-border">
-                  <div v-html="unescapeHTML(child.data.body_html)"></div>
-                  <v-divider class="mb-3 mt-2" />
-                  <div>
-                    {{ $t('general.submitted') }}  
-                    <time-from-now :timestamp="child.data.created_utc" /> 
-                    {{ $t('general.by') }} {{ child.data.author }}
-                  </div>
-                </v-flex>
-              </v-layout>
+        <v-card>
+          <v-container fluid >
+            
+            <v-layout row v-if="child.kind === 't1'">
+              <v-flex xs2>
+                <up-vote-down-vote :score="child.data.score" />
+              </v-flex>
+              <v-flex xs10 class="has-left-border">
+                <div v-html="unescapeHTML(child.data.body_html)"></div>
+                <v-divider class="mb-3 mt-2" />
+                <div>
+                  {{ $t('general.submitted') }}  
+                  <time-from-now :timestamp="child.data.created_utc" /> 
+                  {{ $t('general.by') }} {{ child.data.author }}
+                </div>
+              </v-flex>
+            </v-layout>
 
-              <v-layout row v-else>
-                <a href="#" @click.prevent="openMoreReply(child)">
-                  <i>{{ child.data.count }} {{ getLangReply(child) }}...</i>
-                </a>
-              </v-layout>
+            <v-layout row v-else>
+              <a href="#" @click.prevent="openMoreReply(child)">
+                <i>{{ child.data.count }} {{ getLangReply(child) }}...</i>
+              </a>
+            </v-layout>
 
-            </v-container>
-          </v-card>
-        </v-flex>
+          </v-container>
+        </v-card>
       </v-flex>
       <card-comments :children="getReplies(child)" />
     </div>
