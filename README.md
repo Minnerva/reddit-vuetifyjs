@@ -6,9 +6,12 @@ This project has no intention to be able to fully function as another Reddit app
 ## Version 0.6.0
 
 - Update **README**
+- Add loading indicator
+- Break down more components
 - Self-hosting material-icon for handling sw more easier
 - Move css to bottom of html with **style-ext-html-webpack-plugin** on production
-- Add *serve* script, in-case, want to run it without **webpack-dev-server** 
+- Add *serve* script, in-case, want to run it without **webpack-dev-server**
+- Fix bugs
 
 ## Installation
 
